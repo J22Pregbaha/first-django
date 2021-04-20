@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
+<!-- {{ block.super }} is used to include the default title -->
 {% block title %}
-	{{ board.name }} - {{ block.super }} <!-- {{ block.super }} is used to include the default title -->
+	{{ board.name }} - {{ block.super }}
 {% endblock %}
 
 {% block breadcrumb %}
@@ -10,5 +11,29 @@
 {% endblock %}
 
 {% block content %}
-
+	<div class="mb-4">
+		<a href="{% url 'new_topic' board.pk %}" class="btn btn-primary">New topic</a>
+	</div>
+	<table class="table">
+		<thead class="thead-inverse">
+			<tr>
+				<th>Topic</th>
+				<th>Starter</th>
+				<th>Replies</th>
+				<th>Views</th>
+				<th>Last Update</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for topic in board.topics.all %}
+			<tr>
+				<td>{{ topic.subject }}</td>
+				<td>{{ topic.starter.username }}</td>
+				<td class="align-middle">0</td>
+				<td class="align-middle">0</td>
+				<td>{{ topic.last_updated }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}
