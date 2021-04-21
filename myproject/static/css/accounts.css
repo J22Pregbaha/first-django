@@ -14,3 +14,7 @@ body {
 .logo a:active {
     text-decoration: none;
 }
+
+div.text-center a {
+    color: #fff;
+}
